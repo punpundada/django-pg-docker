@@ -80,11 +80,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    'default': env.db("DATABASE_URL")
+    # 'default': env.db("DATABASE_URL")
+        "default":{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env.str("DB_NAME"),
+        'USER': env.str("DB_USER_NAME"),
+        'PASSWORD': env.str("DB_PASSWORD"),
+        'HOST': "db" ,
+    }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
