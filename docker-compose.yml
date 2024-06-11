@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=tutorial
     ports:
       - "127.0.0.1:5431:5432"
+    volumes:
+      - ~/projectDB:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-q", "-d", "${DB_NAME}", "-U", "${DB_USER_NAME}"]
       interval: 10s
