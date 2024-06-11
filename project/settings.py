@@ -90,18 +90,9 @@ DATABASES = {
         'NAME': env.str("DB_NAME"),
         'USER': env.str("DB_USER_NAME"),
         'PASSWORD': env.str("DB_PASSWORD"),
-        'HOST': "db" , # the host db is same as name of database container in docker-compose
-        "PORT": env.str("DB_PORT")
+        'HOST': "db" ,
     }
 }
-print({
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.str("DB_NAME"),
-        'USER': env.str("DB_USER_NAME"),
-        'PASSWORD': env.str("DB_PASSWORD"),
-        'HOST': "db" , # the host db is same as name of database container in docker-compose
-        "PORT": env.str("DB_PORT")
-    })
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
