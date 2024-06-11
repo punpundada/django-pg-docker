@@ -16,3 +16,17 @@ Before you begin, make sure you have the following prerequisites installed on yo
   - [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
   - [Docker Engine for Linux](https://docs.docker.com/engine/install/)
 
+1. Clone git repo
+
+```bash
+git clone https://github.com/punpundada/django-pg-docker.git
+```
+
+2. Create a .env file
+
+```bash
+cp .env.example .env
+```
+
+3. Edit .env as per your liking
+
