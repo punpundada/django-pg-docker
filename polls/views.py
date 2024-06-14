@@ -21,7 +21,7 @@ def details(req,question_id):
 def result(req,question_id):
     try:
         question = models.Question.objects.get(pk=question_id)
-        choice = models.Choice.objects.order_by("-votes")[:1][0]
+        choice = models.Choice.objects.filter(question_id=question_id).order_by("-votes").last()
     except:
         return Http404(f"No Question found with id {question_id}")
     print(choice,'choices')
@@ -29,4 +29,4 @@ def result(req,question_id):
 
 
 def votes(req,question_id):
-    return HttpResponse(f"you are looking at question with id:{question_id}")
+    return HttpResponse(f"you are looking at question with id:{question_id}");

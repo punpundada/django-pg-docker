@@ -3,12 +3,14 @@ services:
   db:
     image: postgres:16.3-alpine3.18
     container_name: postgres-django-setup
+    env_file:
+      - .env
     environment:
-      - POSTGRES_USER=tutorial
-      - POSTGRES_PASSWORD=tutorial
-      - POSTGRES_DB=tutorial
+      - POSTGRES_USER=${DB_USER_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     ports:
-      - "127.0.0.1:5431:5432"
+      - "127.0.0.1:${DB_PORT}:5432"
     volumes:
       - ~/projectDB:/var/lib/postgresql/data
     healthcheck:
@@ -22,11 +24,11 @@ services:
     build: .
     restart: always
     container_name: web_django_app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:${WEB_PORT}
     env_file:
       - .env
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:${WEB_PORT}:${WEB_PORT}"
     volumes:
       - .:/code
     links:
